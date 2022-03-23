@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actor / Actriz Edit</title>
+        <link rel='stylesheet' href='/css/style.css' />
+    </head>
+
+    <body>
+        <figure class="logo">
+            <a href="/"><img src="/img/logo-DH.png" alt="Logo Digital House"></a>
+          </figure>
+        <h1 class="titulo">Editar Actor / Actriz</h1>
+        <br>
+        <section class="formulario">
+            <form action="/actors/update/<%= actor.id %>?_method=PUT" method="POST">
+                <div>
+                    <label for="first_name">Primer Nombre </label>
+                    <p><input type="text" name="first_name" id="first_name" value="<%= actor.first_name %>" required></p>
+                </div>
+                <div>  
+                    <label for="last_name">Apellido </label>
+                    <p><input type="text" name="last_name" id="last_name" value="<%= actor.last_name %>" required></p>                
+                </div>
+                <div>  
+                    <label for="rating">Rating </label>
+                    <p><input type="number" name="rating" id="rating" value="<%= actor.rating %>" required></p>                
+                </div>
+                <div>
+                    <label for="favorite_movie_id">Pelicula Favorita</label>
+                    <br>
+                    <select name="favorite_movie_id" id="favorite_movie_id">
+                        <option value=""></option>
+                        <% movies.forEach(movie => { %>
+                            <option value="<%= movie.id %>" <%= movie.id == actor.favorite_movie_id ? "selected" : null %> ><%= movie.title %></option>
+                        <% }) %>
+                    </select>
+                    <br>
+                    <span>(Si la pelicula no esta en este listado, debes agragarla primero)</span>
+                </div>
+                <div>
+                    <button class="botonAgregar" type="submit">Editar</button>
+                </div>
+                <div>
+                    <a class="botonVolver" href="/actors"><button>Volver al Listado de Actores / Actrices</button></a>
+                </div>
+            </form>
+        </section>
+
+    </body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= actor.first_name + " " + actor.last_name %> </title>
+    <link rel='stylesheet' href='/css/style.css' />
+
+</head>
+<body>
+    <figure class="logo">
+        <a href="/"><img src="/img/logo-DH.png" alt="Logo Digital House"></a>
+    </figure>
+    <h1><%= actor.first_name + " " + actor.last_name %> </h1>
+    <p>RATING: <%= actor.rating %> </p>
+    <br>
+    <% if(actor.favorite_movie_id){ %>
+        <p>PELICULA FAVORITA: 
+            <% movies.forEach(movie => { %>
+                <%= movie.id == actor.favorite_movie_id ? movie.title : null %> 
+            <% })  %> 
+        </p>
+        <br>
+    <% } %>     
+    <% if(actor.movies.length > 0){ %>
+        <p>
+            <p>PELICULAS EN LAS QUE ACTUA:</p>
+            <ul>
+                <% actor.movies.forEach(movie => { %>
+                    <li><%= movie.title  %> </li>
+                <% }) %> 
+            </ul>
+        </p>
+    <% } %> 
+    <a href="/actors/edit/<%= actor.id %> "><button>EDITAR</button></a>
+    <br>
+    <br>
+    <a href="/actors/delete/<%= actor.id %> "><button>ELIMINAR</button></a>
+    <br>
+    <br>
+    <a  class="botonVolver" href="/actors"><button>Volver al Listado de Actores / Actrices</button></a>
+    
+
+</body>
+</html>
